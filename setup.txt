@@ -1,0 +1,11 @@
+-npm init
+npm i express
+npm i body-parser
+npm i nodemon
+Create README.md file
+Create src foler on root dir and inside src folder create ( services, repository,models, controllers, utils, config, middleware)
+Create .gitignore file
+Setup envrionment variable setup to hide the confidentials details
+Setup the server in index.js file 
+ORM Setup ( npm i mysql2 sequelize sequelize-cli )  this will install package necessary . 
+ 
