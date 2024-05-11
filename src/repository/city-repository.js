@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { City } = require("../models/index");
 
 class CityRepository {
@@ -54,14 +55,26 @@ class CityRepository {
     }
   }
 
-  async getCity(cityId) {
+  async getCity(filter) {
     try {
-      const city = await City.findOne({ where: { id: cityId } });
+      // const city = await City.findOne({ where: { id: cityId } });
 
-      if (city === null) {
-        throw ("City is not present");
+      if (filter.name) {
+        const cities = await City.findAll({
+          where: {
+            name: {
+              [Op.startsWith]: filter.name,
+            },
+          },
+        });
+        return cities;
       }
-      return city;
+      const cities = await City.findAll();
+
+      if (cities === null) {
+        throw "City is not present";
+      }
+      return cities;
     } catch (error) {
       console.log("Something went wrong in repository level");
       throw error;
