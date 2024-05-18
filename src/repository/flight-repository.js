@@ -34,7 +34,15 @@ class FlightRepository {
       priceFilter.push({ price: { [Op.lte]: data.maxPrice } });
     }
 
-    Object.assign(filter, { [Op.and]: priceFilter });
+
+    /**
+     * in above we push two object in priceFilter array respectively saying tha greater than or lessthan or equal to 
+     * so we are assinging this array in filter object as key value pair where key is [Op.and] and value is the array and
+     * this here it will do like  [1 && 2 && 3] consider this element as array object in priceFilter. so it will do and operator 
+     * on every object of array this wasy we will get value will be greater than or ewual to minPrice and value will be
+     * less than or equal to maxPrice.   this is what logic says.
+     */
+    Object.assign(filter, { [Op.and]: priceFilter }); 
 
     // console.log(filter,priceFilter);
     return filter;
